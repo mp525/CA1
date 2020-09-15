@@ -25,9 +25,21 @@ public class JokeFacade {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
-
+        emf = EMF_Creator.createEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
+        try {
+
+            em.getTransaction().begin();
+            
+            em.createQuery("DELETE from Joke").executeUpdate();
+            em.persist( new Joke("What did the Skeleton mobster say to my dog?","I've got a bone to pick with you! *laugh track* "));
+            em.persist( new Joke("Why did the chicken cross the road?","PLEASE OH GOD TELL ME WHY!!! *laugh track* "));
+            em.persist( new Joke("What did the Skeleton math teacher say to me?","Today we will be working with ankles! *laugh track* "));
+            
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
 
     }
 
