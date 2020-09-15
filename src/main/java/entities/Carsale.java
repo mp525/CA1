@@ -26,6 +26,8 @@ public class Carsale implements Serializable {
     private String make;
     private String model;
     private int price;
+    private String created;
+    private String owner;
 
     public Carsale() {
     }
