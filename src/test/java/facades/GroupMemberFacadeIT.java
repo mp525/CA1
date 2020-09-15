@@ -8,11 +8,10 @@ package facades;
 import dtos.GroupMemberDTO;
 import entities.GroupMember;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,54 +21,51 @@ import utils.EMF_Creator;
  *
  * @author matti
  */
-public class GroupMemberFarcadeIT {
-                private static EntityManagerFactory emf;
+public class GroupMemberFacadeIT {
+        private static EntityManagerFactory emf;
+        private static GroupMemberFacade facade;
 
-    public GroupMemberFarcadeIT() {
+    public GroupMemberFacadeIT() {
     }
     
     @BeforeAll
     public static void setUpClass() {
 
-        emf = EMF_Creator.createEntityManagerFactory();
+        emf = EMF_Creator.createEntityManagerFactoryForTest();
         EntityManager em = emf.createEntityManager();
+        facade=GroupMemberFacade.getGMPFacade(emf);
         try {
-
             em.getTransaction().begin();
-            
             em.createQuery("DELETE from GroupMember").executeUpdate();
             //ændre min hobby senere haha
-            em.persist( new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder"));
-            
-            
+            em.persist( new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder"));                    
             em.getTransaction().commit();
         } finally {
             em.close();
         }
     }
     
-    @AfterAll
-    public static void tearDownClass() {
-    }
     
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      * Test of getAll method, of class GroupMemberFarcade.
      */
     @Test
     public void testGetAll() {
-//        System.out.println("getAll");
-//        ArrayList<GroupMemberDTO> expResult = null;
-//        ArrayList<GroupMemberDTO> result = GroupMemberFarcade.getAll();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
+        List<GroupMemberDTO> expResult = new ArrayList();
+        GroupMember m = new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder");
+        GroupMemberDTO dto = new GroupMemberDTO(m);
+        expResult.add(dto);
+
+        System.out.println(m);
+        System.out.println(dto);
+        //nullpointer
+        List<GroupMemberDTO> result = GroupMemberFacade.getAll();   
+        System.out.println(result);
+
+
+//
+        assertEquals(expResult.get(0).getName(), result.get(0).getName());
         
     }
 
