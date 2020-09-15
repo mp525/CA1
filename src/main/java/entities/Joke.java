@@ -16,7 +16,7 @@ public class Joke implements Serializable {
     private String setup;
     private String punch;
 
-    public Joke(Integer id, String setup, String punch) {
+    public Joke(int id, String setup, String punch) {
         this.id = id;
         this.setup = setup;
         this.punch = punch;
@@ -25,11 +25,11 @@ public class Joke implements Serializable {
     public Joke() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
