@@ -27,29 +27,29 @@ import utils.EMF_Creator;
  */
 @Path("groupmembers")
 public class MembersRessource {
-    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-
-    private static final GroupMemberFacade FACADE = GroupMemberFacade.getGMPFacade(EMF);
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
-    @Context
-    private UriInfo context;
-
-    /**
-     * Creates a new instance of MembersRessource
-     */
-    public MembersRessource() {
-    }
-
-   
-    
-    @Path("/all")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String getAllJSON() {
-        //TODO return proper representation object
-        List<GroupMemberDTO> list = FACADE.getAll();
-        return GSON.toJson(list);
-    }
+//    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
+//
+//    private static final GroupMemberFacade FACADE = GroupMemberFacade.getGMPFacade(EMF);
+//    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+//
+//    @Context
+//    private UriInfo context;
+//
+//    /**
+//     * Creates a new instance of MembersRessource
+//     */
+//    public MembersRessource() {
+//    }
+//
+//   
+//    
+//    @Path("/all")
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String getAllJSON() {
+//        //TODO return proper representation object
+//        List<GroupMemberDTO> list = FACADE.getAll();
+//        return GSON.toJson(list);
+//    }
 
 }
