@@ -34,8 +34,8 @@ public class JokeDTO {
            
     public JokeDTO(Joke jokee) {
         this.id = jokee.getId();
-        this.punch = jokee.getPunch();
         this.setup = jokee.getSetup();
+        this.punch = jokee.getPunch();
     }
     
     public JokeDTO() {
