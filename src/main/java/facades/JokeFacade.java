@@ -50,7 +50,7 @@ public class JokeFacade {
         return new JokeDTO(j);
     }
     
-    public JokeDTO getRandomJoke() {
+    public static JokeDTO getRandomJoke() {
         Random ran = new Random();
         
         EntityManager em = emf.createEntityManager();
@@ -61,11 +61,11 @@ public class JokeFacade {
             dtos.add(new JokeDTO(joke));
         });
         
-        int size = ran.nextInt(jokes.size())+1;
+        int size = ran.nextInt(jokes.size()+1);
         Joke j = em.find(Joke.class, size);
         return new JokeDTO(j);
     }
-
+    
     public static void main(String[] args) {
 
         emf = EMF_Creator.createEntityManagerFactory();
@@ -83,6 +83,8 @@ public class JokeFacade {
         } finally {
             em.close();
         }
+        JokeDTO joke = getRandomJoke();
+        System.out.println(joke);
 
     }
 
