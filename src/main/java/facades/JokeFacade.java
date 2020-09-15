@@ -83,8 +83,8 @@ public class JokeFacade {
         } finally {
             em.close();
         }
-        JokeDTO joke = getRandomJoke();
-        System.out.println(joke);
+//        JokeDTO joke = getRandomJoke();
+//        System.out.println(joke);
 
     }
 
