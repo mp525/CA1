@@ -3,46 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package dtos;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import entities.GroupMember;
 
 /**
  *
  * @author matti
  */
-@Entity
-public class GroupMember implements Serializable {
+public class GroupMemberDTO {
 
-    private static final int serialVersionUID = 1;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+   
     private String name;
     private String studentID;
     private String favouritePotatoForm;
     private String favouriteMovie;
     private String hobby;
 
-    public GroupMember(String name, String studentID, String favouritePotatoForm, String favouriteMovie, String hobby) {
-        this.name = name;
-        this.studentID = studentID;
-        this.favouritePotatoForm = favouritePotatoForm;
-        this.favouriteMovie = favouriteMovie;
-        this.hobby = hobby;
+    public GroupMemberDTO(GroupMember m) {
+        this.name = m.getName();
+        this.studentID = m.getStudentID();
+        this.favouritePotatoForm = m.getFavouritePotatoForm();
+        this.favouriteMovie = m.getFavouriteMovie();
+        this.hobby = m.getHobby();
     }
 
-    public GroupMember() {
+    public GroupMemberDTO() {
     }
 
     
-    public int getId() {
-        return id;
-    }
+   
 
     public String getName() {
         return name;
@@ -87,3 +77,4 @@ public class GroupMember implements Serializable {
     
     
 }
+
