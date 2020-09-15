@@ -18,7 +18,7 @@ import javax.persistence.Id;
 @Entity
 public class Carsale implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,18 +26,31 @@ public class Carsale implements Serializable {
     private String make;
     private String model;
     private int price;
-    private String created;
-    private String owner;
+    private String buyerName;
+    //private String owner;
 
     public Carsale() {
     }
 
-    public Carsale(int year, String make, String model, int price) {
+    public Carsale(int year, String make, String model, int price, String buyerName) {
         this.year = year;
         this.make = make;
         this.model = model;
         this.price = price;
+        this.buyerName = buyerName;
+        //this.owner = owner;
     }
+
+    public String getSeller() {
+        return buyerName;
+    }
+
+    public void setSeller(String buyerName) {
+        this.buyerName = buyerName;
+    }
+
+    
+    
 
     public int getYear() {
         return year;

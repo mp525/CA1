@@ -60,10 +60,13 @@ public class JokeFacade {
         jokes.forEach((Joke joke) -> {
             dtos.add(new JokeDTO(joke));
         });
-        
-        int size = ran.nextInt(jokes.size()+1);
-        Joke j = em.find(Joke.class, size);
-        return new JokeDTO(j);
+        int arrSize = jokes.size();
+        int ranNum = ran.nextInt(arrSize);
+        JokeDTO ranJoke = dtos.get(ranNum);
+        return ranJoke;
+        //dtos[size];
+//        Joke j = em.find(Joke.class, size);
+//        return new JokeDTO(j);
     }
     
     public static void main(String[] args) {
@@ -83,8 +86,7 @@ public class JokeFacade {
         } finally {
             em.close();
         }
-//        JokeDTO joke = getRandomJoke();
-//        System.out.println(joke);
+
 
     }
 
