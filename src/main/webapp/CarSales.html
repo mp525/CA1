@@ -4,13 +4,54 @@
         <title>Car Sales page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 4px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }</style>
     </head>
     <body>
         <h1>Car sales over time:</h1>
-        
-        
+        <table id="table1">
+        </table>
+        <br>
+        <form>
+            <button id="btn1">Placeholder</button>
+        </form>
+
         <script>
-            
+            var carsales = getCarsales();
+
+
+
+            function getCarsales() {
+                fetch("api/carsales")
+                        .then(res => res.json()) //in flow1, just do it
+                        .then(carsales => {
+                            // Inside this callback, and only here, the response data is available
+                            console.log("data", carsales);
+                            
+                            var lis = carsales.map((c) => {
+                                line = "<tr><th>" + c.id + "</th><th>" + c.year + "</th><th>"+ c.make +"</th><th>"+ c.model +"</th><th>"+ c.price +"</th></tr>";
+                                return line;
+                            });
+                            lis.unshift("<tr><th>ID</th><th>Year</th><th>Make</th><th>Model</th><th>Price</th><tr>");
+                            document.getElementById("table1").innerHTML = lis.join("");
+
+                        });
+            };
+
+
         </script>
     </body>
 </html>
