@@ -62,6 +62,7 @@ public class JokeFacade {
         });
         
         int size = ran.nextInt(jokes.size()+1);
+        //dtos[size];
         Joke j = em.find(Joke.class, size);
         return new JokeDTO(j);
     }
@@ -83,8 +84,8 @@ public class JokeFacade {
         } finally {
             em.close();
         }
-        JokeDTO joke = getRandomJoke();
-        System.out.println(joke);
+//        JokeDTO joke = getRandomJoke();
+//        System.out.println(joke);
 
     }
 
