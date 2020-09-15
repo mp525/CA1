@@ -67,6 +67,11 @@ public class CarsaleFacadeTest {
     public void tearDown() {
     }
     
+    @Test
+    public void testGetCarsaleCount() {
+        assertEquals(3, facade.getCarsaleCount(), "Expects three rows in the database");
+    }
+    
     /**
      * Test of getAllCarsales method, of class CarsaleFacade.
      */

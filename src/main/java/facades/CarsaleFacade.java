@@ -61,7 +61,7 @@ public class CarsaleFacade {
         try {
             em.getTransaction().begin();
             em.createQuery("DELETE from Carsale").executeUpdate();
-            //int year, String make, String model, int price, String created, String owner
+           
             em.persist(new Carsale(1997, "Ford", "E350", 3000, "Hans Pilgaard"));
             em.persist(new Carsale(1999, "Chevy", "Venture", 4900, "James Bond"));
             em.persist(new Carsale(2000, "Chevy", "Venture", 5000, "Kim Larsen"));
