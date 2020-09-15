@@ -24,27 +24,27 @@ import utils.EMF_Creator;
  * @author Mathias
  */
 public class CarsaleFacadeTest {
-    
+
     private static EntityManagerFactory emf;
     private static CarsaleFacade facade;
-    
+
     private Carsale c1;
     private Carsale c2;
     private Carsale c3;
-    
+
     public CarsaleFacadeTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactoryForTest();
         facade = CarsaleFacade.getFacade(emf);
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
@@ -62,16 +62,16 @@ public class CarsaleFacadeTest {
             em.close();
         }
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
-    
+
     @Test
     public void testGetCarsaleCount() {
         assertEquals(3, facade.getCarsaleCount(), "Expects three rows in the database");
     }
-    
+
     /**
      * Test of getAllCarsales method, of class CarsaleFacade.
      */
@@ -86,7 +86,7 @@ public class CarsaleFacadeTest {
                 Matchers.<CarsaleDTO>hasProperty("price", is(5000))
         )
         );
-       
+
     }
-    
+
 }
