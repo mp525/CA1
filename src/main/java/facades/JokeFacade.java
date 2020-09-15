@@ -44,6 +44,16 @@ public class JokeFacade {
         return dtos;
     }
     
+    public long getJokeCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            long jokeCount = (long) em.createQuery("SELECT COUNT(j) FROM Joke j").getSingleResult();
+            return jokeCount;
+        }finally{
+            em.close();
+        }
+    }
+    
     public JokeDTO getJokeByID(int id) {
         EntityManager em = emf.createEntityManager();
         Joke j = em.find(Joke.class, id);
