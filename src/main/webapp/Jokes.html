@@ -13,11 +13,14 @@
                 padding: 10px;
                 border-top-width: 2px;
                 border-top-color: lightgray;
-            }
-            tr,th,d,h1{
                 color: white;
             }
-            
+
+            h1 {
+                color: white;
+            }
+
+
             th {
                 text-align: left;
                 border: 2px solid black;
@@ -26,34 +29,63 @@
                 padding: 10px;
                 border-top-width: 2px;
                 border-top-color: lightgray;
-                
+                color: white;
+
             }
 
             body{
-background: rgba(124,26,9,1);
-background: -moz-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(124,26,9,1)), color-stop(10%, rgba(173,22,5,1)), color-stop(13%, rgba(114,16,4,1)), color-stop(18%, rgba(173,22,5,1)), color-stop(28%, rgba(114,16,4,1)), color-stop(43%, rgba(173,22,5,1)), color-stop(50%, rgba(114,16,4,1)), color-stop(59%, rgba(173,22,5,1)), color-stop(63%, rgba(114,16,4,1)), color-stop(75%, rgba(173,25,5,1)), color-stop(82%, rgba(114,16,4,1)), color-stop(88%, rgba(173,22,5,1)), color-stop(95%, rgba(98,19,9,1)), color-stop(100%, rgba(84,19,13,1)));
-background: -webkit-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
-background: -o-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
-background: -ms-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
-background: linear-gradient(to right, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c1a09', endColorstr='#54130d', GradientType=1 );
+                background: rgba(124,26,9,1);
+                background: -moz-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
+                background: -webkit-gradient(left top, right top, color-stop(0%, rgba(124,26,9,1)), color-stop(10%, rgba(173,22,5,1)), color-stop(13%, rgba(114,16,4,1)), color-stop(18%, rgba(173,22,5,1)), color-stop(28%, rgba(114,16,4,1)), color-stop(43%, rgba(173,22,5,1)), color-stop(50%, rgba(114,16,4,1)), color-stop(59%, rgba(173,22,5,1)), color-stop(63%, rgba(114,16,4,1)), color-stop(75%, rgba(173,25,5,1)), color-stop(82%, rgba(114,16,4,1)), color-stop(88%, rgba(173,22,5,1)), color-stop(95%, rgba(98,19,9,1)), color-stop(100%, rgba(84,19,13,1)));
+                background: -webkit-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
+                background: -o-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
+                background: -ms-linear-gradient(left, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
+                background: linear-gradient(to right, rgba(124,26,9,1) 0%, rgba(173,22,5,1) 10%, rgba(114,16,4,1) 13%, rgba(173,22,5,1) 18%, rgba(114,16,4,1) 28%, rgba(173,22,5,1) 43%, rgba(114,16,4,1) 50%, rgba(173,22,5,1) 59%, rgba(114,16,4,1) 63%, rgba(173,25,5,1) 75%, rgba(114,16,4,1) 82%, rgba(173,22,5,1) 88%, rgba(98,19,9,1) 95%, rgba(84,19,13,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c1a09', endColorstr='#54130d', GradientType=1 );
+
+            }
 
             table.center {
                 margin-left: auto;
                 margin-right: auto;
 
             }
+
+            p {
+                color: cornsilk;
+                text-align: center;
+                font-family: "Comic Sans MS", cursive, sans-serif;
+            }
+            input{
+                color: cornsilk;
+                background-color: maroon;
+
+            }
+            button{
+                color: cornsilk;
+                background-color: crimson;
+            }
+
         </style>
     </head>
     <body>
         <h1 style="text-align: center">Laugh Central</h1>
 
-        <ul id="ul1"></ul>
         <div>
             <table id="table" class="center">
 
             </table>
+
+
+            <div align="center">
+                <input type="number" id="jokeGet" name="joker">
+                <button onclick="getById()">Get Joke</button>
+
+                <button onclick="random()">Get Random Joke</button>
+                <p id="jokegotten"></p>
+            </div>
+
+
         </div>
 
 
@@ -80,6 +112,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c1a09', end
 
                     })
             console.log("2");
+
+
+            function getById() {
+                var id = document.getElementById("jokeGet").value;
+                var url = "api/joke/id/" + id;
+
+                fetch(url).then(res => res.json()).then(jokes => {
+                    var jokeString = jokes.setup + "<br>" + jokes.punch;
+                    return document.getElementById("jokegotten").innerHTML = jokeString;
+
+                    console.log("Connection!");
+                })
+            }
+            ;
+
+            function random() {
+                var url = "api/joke/random";
+
+                fetch(url).then(res => res.json()).then(joke => {
+                    var jokeString = "Id: " + joke.id + "<br>" + joke.setup + "<br>" + joke.punch;
+                    return document.getElementById("jokegotten").innerHTML = jokeString;
+                })
+            }
 
 
         </script>
