@@ -88,7 +88,6 @@ public class MembersRessourceIT {
         .get("/groupmembers/all").then()
         .assertThat()
         .statusCode(HttpStatus.OK_200.getStatusCode());
-          
     }
     
     
