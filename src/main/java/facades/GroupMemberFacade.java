@@ -7,38 +7,41 @@ package facades;
 
 
 import dtos.GroupMemberDTO;
+import static dtos.GroupMemberDTO.toDTO;
 import entities.GroupMember;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import utils.EMF_Creator;
 
-public class GroupMemberFarcade {
+public class GroupMemberFacade {
 
-    private static GroupMemberFarcade instance;
+    private static GroupMemberFacade instance;
     private static EntityManagerFactory emf;
 
-    private GroupMemberFarcade() {
+    private GroupMemberFacade() {
 
     }
 
-    
-    public static ArrayList<GroupMemberDTO> getAll(){
+    public static GroupMemberFacade getGMPFacade(EntityManagerFactory _emf) {
+        if (instance == null) {
+            emf = _emf;
+            instance = new GroupMemberFacade();
+        }
+        return instance;
+    }
+    public static List<GroupMemberDTO> getAll(){
         
          EntityManager em = emf.createEntityManager();
         try{
             TypedQuery<GroupMember> query = 
                        em.createQuery("Select m from GroupMember m", GroupMember.class);
-            ArrayList members=(ArrayList) query.getResultList();
-            ArrayList<GroupMemberDTO>membersDTO=new ArrayList();
-            System.out.println(members.size());
-            for (int i = 0; i < members.size(); i++) {
-               GroupMember member=(GroupMember) members.get(i);
-               GroupMemberDTO e = new GroupMemberDTO(member);
-               membersDTO.add(e);
-            }
+            List <GroupMember>members= query.getResultList();
+            System.out.println(members.get(0).getName());
+            
+            List<GroupMemberDTO>membersDTO=toDTO(members);
+            System.out.println(membersDTO.get(0).getName());
             return membersDTO;
         }finally {
             em.close();}}
@@ -52,7 +55,7 @@ public class GroupMemberFarcade {
         emf = EMF_Creator.createEntityManagerFactory();
         EntityManager em = emf.createEntityManager();
         try {
-
+            
             em.getTransaction().begin();
             
             em.createQuery("DELETE from GroupMember").executeUpdate();
@@ -61,6 +64,7 @@ public class GroupMemberFarcade {
             
             
             em.getTransaction().commit();
+            getAll();
         } finally {
             em.close();
         }

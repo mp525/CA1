@@ -11,12 +11,12 @@
 <body>
     <div align="center">
         <div class="shadow-sm p-3 mb-5 bg-white rounded">
-            <h1 class="h1">Group 7</h1>
+            <h1>Group 7</h1>
 
             <h2>Class E</h2>
         </div>
         <h2>Members loaded from a REST API</h2>
-        <table id="memberTable">
+        <table class="table" id="memberTable">
 
         </table>
         <button class="btn btn-dark" id="btnReload">Reload</button><br>
@@ -29,7 +29,33 @@
 
 
     <!-- det her er bare et spaceholder navn -->
-    <script src="fetchMembers.js"></script>
+    <script>
+                var url = "api/groupmembers/all"
+
+
+                getAll();
+//refresher
+
+        var btn=document.getElementById("btnReload");
+        btn.onclick=getAll;
+        function getAll() {
+            fetch(url)
+                .then(res => res.json())
+                .then(medlemmer => {
+
+                    var lis = medlemmer.map((m) => {
+
+                        line = "<tr><th>"+m.name +"</th><th>"+m.studentID +"</th><th>"+m.favouritePotatoForm +"</th><th>"+m.favouriteMovie +"</th><th>"+m.hobby +"</th></tr>"
+                        return line;
+                    })
+                    var str1 = "<tr><th>Name</th><th>StudentID</th><th>Favourite Potato Form</th><th>Favourite Film</th><th>Hobby</th></tr>";
+                    console.log(str1);
+                    document.getElementById("memberTable").innerHTML = str1 + lis.join("");
+                    console.log(lis);
+                })
+        }
+        
+    </script>
 </body>
 
 </html>

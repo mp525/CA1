@@ -6,6 +6,8 @@
 package dtos;
 
 import entities.GroupMember;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,7 +33,13 @@ public class GroupMemberDTO {
     public GroupMemberDTO() {
     }
 
-    
+    public static List<GroupMemberDTO> toDTO(List<GroupMember> groupList){
+        List<GroupMemberDTO> listDTO = new ArrayList();
+        for (GroupMember gm : groupList) {
+                listDTO.add(new GroupMemberDTO(gm));
+        } //Måske lambda expression?
+        return listDTO;
+    }    
    
 
     public String getName() {
