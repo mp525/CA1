@@ -21,38 +21,78 @@
             }</style>
     </head>
     <body>
-        <h1>All Carsales</h1>
+        <h1 id="overskrift">All Carsales</h1>
         <form>
             <input type="text" id="filter1">
             <button id="btn1">Filter</button>
-            <button id="btn2">Show all</button>
+            <button id="btn2">Show all/default</button>
+            <input type="text" id="sort">
+            <button id="btn3">Sort</button>
         </form>
         <br>
         <table id="table1">
         </table>
-        
+
         <script>
             var carsArr;
             var carsales = getCarsales();
 
             document.getElementById("btn1").addEventListener("click", filterCarsales);
             document.getElementById("btn2").addEventListener("click", restoreTable);
+            document.getElementById("btn3").addEventListener("click", sortCarsales);
 
 
             function restoreTable(e) {
                 e.preventDefault();
+                carsArr.sort(function(a,b){
+                    return a.id-b.id;
+                });
                 makeTable(carsArr);
+                document.getElementById("overskrift").innerHTML = "All Carsales";
             }
 
             function filterCarsales(e) {
                 e.preventDefault();
                 var carsFiltered = carsArr.filter(function (cs) {
-                    let filter = document.getElementById("filter1").value;  
+                    let filter = document.getElementById("filter1").value;
                     if (cs.make === filter || cs.model === filter || cs.year === parseInt(filter) || cs.price === parseInt(filter)) {
+                        document.getElementById("overskrift").innerHTML = "Carsales filtered by " + filter;
                         return cs;
                     }
                 });
                 makeTable(carsFiltered);
+            }
+
+            function sortCarsales(e) {
+                e.preventDefault();
+                var sortVar = document.getElementById("sort").value.toLowerCase();
+                var sorted = carsArr.sort(function (a, b) {
+                    if (sortVar === "year") {
+                        return a.year - b.year;
+                    }
+                    if(sortVar === "price"){
+                        return a.price - b.price;
+                    }
+                    if(sortVar === "make"){
+                        if(a.make < b.make){
+                            return -1;
+                        }
+                        if(a.make > b.make){
+                            return 1;
+                        }
+                        return 0;
+                    }
+                    if(sortVar === "model"){
+                        if(a.model < b.model){
+                            return -1;
+                        }
+                        if(a.model > b.model){
+                            return 1;
+                        }
+                        return 0;
+                    }
+                });
+                makeTable(sorted);
             }
 
             function getCarsales() {
