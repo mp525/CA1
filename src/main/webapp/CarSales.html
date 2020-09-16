@@ -5,52 +5,62 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-       
+
+
+        <!--                <style>
         
-        <!--        <style>table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 50%;
-            }
-
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 4px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }</style>-->
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        padding: 4px;
+                        color: #000000
+                    }
+        
+                    </style>-->
     </head>
     <body>
         <div class="col" align="center">
-        <div class="col-6" style="background-color: lightgrey ; border: thick solid #000000" >
-        <h1 id="overskrift">All Carsales</h1>
-        <form>
-            <input type="text" id="filter1">
-            <button id="btn1">Filter</button>
-            <button id="btn2">Show all/default</button>
-            <input type="text" id="sort">
-            <button id="btn3">Sort</button>
-        </form>
-        <br>
-        
-        <table id="table1" class="table col">
-        </table>
-        <br>
-        <br>
-       
-</div>
+            <div class="col-6" style="background-color: lightgrey ; border: thick solid #000000" >
+                <h1 id="overskrift">All Carsales</h1>
+                <form>
+                    <input type="text" id="filter1">
+                    <button id="btn1">Filter</button>
+                    <button id="btn2">Show all/default</button>
+                    <input type="text" id="sort">
+                    <button id="btn3">Sort</button>
+                </form>
+                <br>
+
+                <table id="table1" class="table col">
+                </table>
+                <br>
+                <br>
+
             </div>
+        </div>
 
         <script>
             var carsArr;
-            var carsales = getCarsales();
+            getCarsales();
 
             document.getElementById("btn1").addEventListener("click", filterCarsales);
             document.getElementById("btn2").addEventListener("click", restoreTable);
             document.getElementById("btn3").addEventListener("click", sortCarsales);
+            //document.getElementById("add").addEventListener("click", addCarsale);
+            
+            function addCarsale(e){
+                e.preventDefault();
+                let id = document.getElementById("id1").value;
+                let year = document.getElementById("id2").value;
+                let make = document.getElementById("id3").value;
+                let model = document.getElementById("id4").value;
+                let price = document.getElementById("id5").value;
+               var newSale = {id:id, year:year, make:make, model:model, price:price};
+               carsArr.push(newSale);
+               makeTable(carsArr);
+               console.log(carsArr);
+               
+            }
 
             function restoreTable(e) {
                 e.preventDefault();
@@ -111,17 +121,22 @@
                         .then(carsales => {
                             carsArr = carsales;
                             makeTable(carsales);
+                            
                         });
             }
             ;
 
             function makeTable(carsales) {
                 var lis = carsales.map((c) => {
-                    line = "<tr><th>" + c.id + "</th><th>" + c.year + "</th><th>" + c.make + "</th><th>" + c.model + "</th><th>" + c.price + "</th></tr>";
+                    line = "<tr><td>" + c.id + "</td><td>" + c.year + "</td><td>" + c.make + "</td><td>" + c.model + "</td><td>" + c.price + "</td></tr>";
                     return line;
                 });
                 lis.unshift("<tr><th>ID</th><th>Year</th><th>Make</th><th>Model</th><th>Price</th><tr>");
+                lis.push("<tr><form><td><input id=\"id1\" type=\"text\" style=\"width:70px\"></td><td><input id=\"id2\" type=\"text\" style=\"width:70px\">\n\
+                        </td><td><input id=\"id3\" type=\"text\" style=\"width:70px\"></td><td><input id=\"id4\" type=\"text\" style=\"width:70px\"></td>\n\
+                        <td><input id=\"id5\" type=\"text\" style=\"width:70px\"></td></tr><input id=\"add\" type=\"submit\" value=\"Add Carsale\"></form>");
                 document.getElementById("table1").innerHTML = lis.join("");
+                document.getElementById("add").addEventListener("click", addCarsale);
             }
 
 
