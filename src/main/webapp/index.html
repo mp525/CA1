@@ -26,35 +26,59 @@
         <a href="https://github.com/mp525/CA1" class="link">Go to Git Repository</a><br>
         <a href="https://github.com/mp525/CA1" class="link">Go to Car Page</a><br>
     </div>
-
-
+    <div id="showPic" align="center">
+        
+    </div>
     <!-- det her er bare et spaceholder navn -->
     <script>
-                var url = "api/groupmembers/all"
 
 
-                getAll();
+
+        var mt = document.getElementById("memberTable");
+        mt.addEventListener('click', (event) => {
+            event.preventDefault();
+            keyPressed = event.target.innerText;
+            console.log(keyPressed.includes(""));
+        var divpic=document.getElementById("showPic");
+            if (keyPressed.includes('Matti')) 
+                divpic.innerHTML="<img src="+"Matti.jpg"+" width="+"300"+">";
+                
+                else if (keyPressed.includes('Mathias'))    
+                divpic.innerHTML="<img src="+"Mathias.jpg"+" width="+"300"+">";
+            
+           else if (keyPressed.includes('Vibeke'))    
+                divpic.innerHTML="<img src="+"Vibeke.jpg"+" width="+"300"+">";
+            
+            else if (keyPressed.includes('Nikolaj'))    
+                divpic.innerHTML="<img src="+"Nikolaj.jpg"+" width="+"300"+">";
+            
+            
+            
+        });
+
+
+
+        var url = "api/groupmembers/all"
+        getAll();
 //refresher
-
-        var btn=document.getElementById("btnReload");
-        btn.onclick=getAll;
+        var btn = document.getElementById("btnReload");
+        btn.onclick = getAll;
         function getAll() {
             fetch(url)
-                .then(res => res.json())
-                .then(medlemmer => {
+                    .then(res => res.json())
+                    .then(medlemmer => {
+                        var lis = medlemmer.map((m) => {
 
-                    var lis = medlemmer.map((m) => {
-
-                        line = "<tr><th>"+m.name +"</th><th>"+m.studentID +"</th><th>"+m.favouritePotatoForm +"</th><th>"+m.favouriteMovie +"</th><th>"+m.hobby +"</th></tr>"
-                        return line;
+                            line = "<tr><th>" + m.name + "</th><th>" + m.studentID + "</th><th>" + m.favouritePotatoForm + "</th><th>" + m.favouriteMovie + "</th><th>" + m.hobby + "</th></tr>"
+                            return line;
+                        })
+                        var str1 = "<tr><th>Name</th><th>StudentID</th><th>Favourite Potato Form</th><th>Favourite Film</th><th>Hobby</th></tr>";
+                        console.log(str1);
+                        document.getElementById("memberTable").innerHTML = str1 + lis.join("");
+                        console.log(lis);
                     })
-                    var str1 = "<tr><th>Name</th><th>StudentID</th><th>Favourite Potato Form</th><th>Favourite Film</th><th>Hobby</th></tr>";
-                    console.log(str1);
-                    document.getElementById("memberTable").innerHTML = str1 + lis.join("");
-                    console.log(lis);
-                })
         }
-        
+
     </script>
 </body>
 
