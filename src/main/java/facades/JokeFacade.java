@@ -60,7 +60,7 @@ public class JokeFacade {
         return new JokeDTO(j);
     }
     
-    public static JokeDTO getRandomJoke() {
+    public JokeDTO getRandomJoke() {
         Random ran = new Random();
         
         EntityManager em = emf.createEntityManager();
