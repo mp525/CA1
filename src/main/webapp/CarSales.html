@@ -4,7 +4,10 @@
         <title>Car Sales page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>table {
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!--        <style>table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
                 width: 50%;
@@ -18,9 +21,11 @@
 
             tr:nth-child(even) {
                 background-color: #dddddd;
-            }</style>
+            }</style>-->
     </head>
     <body>
+        <div class="col" align="center">
+        <div class="col-6" style="background-color: lightcyan" >
         <h1 id="overskrift">All Carsales</h1>
         <form>
             <input type="text" id="filter1">
@@ -30,8 +35,14 @@
             <button id="btn3">Sort</button>
         </form>
         <br>
-        <table id="table1">
+        
+        <table id="table1" class="table col">
         </table>
+        <br>
+        <br>
+       
+</div>
+            </div>
 
         <script>
             var carsArr;
@@ -44,8 +55,8 @@
 
             function restoreTable(e) {
                 e.preventDefault();
-                carsArr.sort(function(a,b){
-                    return a.id-b.id;
+                carsArr.sort(function (a, b) {
+                    return a.id - b.id;
                 });
                 makeTable(carsArr);
                 document.getElementById("overskrift").innerHTML = "All Carsales";
@@ -70,23 +81,23 @@
                     if (sortVar === "year") {
                         return a.year - b.year;
                     }
-                    if(sortVar === "price"){
+                    if (sortVar === "price") {
                         return a.price - b.price;
                     }
-                    if(sortVar === "make"){
-                        if(a.make < b.make){
+                    if (sortVar === "make") {
+                        if (a.make < b.make) {
                             return -1;
                         }
-                        if(a.make > b.make){
+                        if (a.make > b.make) {
                             return 1;
                         }
                         return 0;
                     }
-                    if(sortVar === "model"){
-                        if(a.model < b.model){
+                    if (sortVar === "model") {
+                        if (a.model < b.model) {
                             return -1;
                         }
-                        if(a.model > b.model){
+                        if (a.model > b.model) {
                             return 1;
                         }
                         return 0;
