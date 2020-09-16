@@ -5,6 +5,7 @@ import utils.EMF_Creator;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
+import java.lang.reflect.Array;
 import java.net.URI;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,6 +14,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,10 +52,12 @@ public class MembersRessourceIT {
         
         EntityManager em = emf.createEntityManager();
         r1 = new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "BurgerSpisning");
+        r2= new GroupMember("Nikolaj Trankjaer", "cph-nt105", "Rebaked Potatoes", "Neil Breen: Twisted Pair", "Tabletop Wargaming");
         try {
             em.getTransaction().begin();
             em.createQuery("DELETE from GroupMember").executeUpdate();
             em.persist(r1);
+            em.persist(r2);
             
             em.getTransaction().commit();
         } finally { 
@@ -83,11 +88,13 @@ public class MembersRessourceIT {
    
     @Test
     public void testApiAll() throws Exception {
+        String[] a ={"Matti Hansen","Nikolaj Trankjaer"};
         given()
         .contentType("application/json")
         .get("/groupmembers/all").then()
         .assertThat()
-        .statusCode(HttpStatus.OK_200.getStatusCode());
+        .statusCode(HttpStatus.OK_200.getStatusCode())
+        .body("name", hasItems(a));
     }
     
     
