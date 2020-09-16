@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jokes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <style>
+            table, td, tr {
+                border: 2px solid black;
+                border-collapse: collapse;
+                border-width: 0px;
+                padding: 10px;
+                border-top-width: 2px;
+                border-top-color: lightgray;
+            }
+            th {
+                text-align: left;
+                border: 2px solid black;
+                border-collapse: collapse;
+                border-width: 0px;
+                padding: 10px;
+                border-top-width: 2px;
+                border-top-color: lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Laugh Central</h1>
+
+        <ul id="ul1"></ul>
+        <div>
+            <table id="table">
+
+            </table>
+        </div>
+
+
+        <script>
+
+
+            var url = "api/joke/all"
+
+            console.log("1")
+            fetch(url)
+                    .then(res => res.json()) //in flow1, just do it
+                    .then(jokes => {
+                        // Inside this callback, and only here, the response data is available
+                        console.log("data", jokes);
+                        /* data now contains the response, converted to JavaScript
+                         Observe the output from the log-output above
+                         Now, just build your DOM changes using the data*/
+                        var heading = "<tr><th>Id</th><th>Setup</th><th>Punch</th></tr>";
+                        var lis = jokes.map((j) => {
+                            line = "<tr><td>" + j.id + "</td><td>" + j.setup + "</td><td>" + j.punch + "</td></tr>"
+                            return line;
+                        })
+                        document.getElementById("table").innerHTML = heading + lis.join("")
+
+                    })
+            console.log("2");
+
+
+        </script>
+    </body>
+</html>
