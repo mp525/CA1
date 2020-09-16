@@ -61,7 +61,7 @@ public class GroupMemberFacade {
             em.createQuery("DELETE from GroupMember").executeUpdate();
             //ændre min hobby senere haha
             em.persist( new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder"));
-            
+            em.persist( new GroupMember("Nikolaj Trankjaer", "cph-nt105", "Rebaked Potatoes", "Neil Breen: Twisted Pair", "Tabletop Wargaming"));
             
             em.getTransaction().commit();
             getAll();

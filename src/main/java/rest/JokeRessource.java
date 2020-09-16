@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -24,11 +25,7 @@ public class JokeRessource {
     private static final JokeFacade FACADE = JokeFacade.getJokeFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public String demo() {
-        return "{\"msg\":\"Hello World\"}";
-    }
+
 
     @Path("count")
     @GET
@@ -45,4 +42,15 @@ public class JokeRessource {
         List<JokeDTO> list = FACADE.getAllJokes();
         return GSON.toJson(list);
     }
+    
+    @Path("/id/{id}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getJById(@PathParam("id") int id){
+        JokeDTO Joke = FACADE.getJokeByID(id);
+        
+        return GSON.toJson(Joke);
+    }
+
+    
 }
