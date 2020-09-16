@@ -21,35 +21,58 @@
             }</style>
     </head>
     <body>
-        <h1>Car sales over time:</h1>
+        <h1>All Carsales</h1>
+        <form>
+            <input type="text" id="filter1">
+            <button id="btn1">Filter</button>
+            <button id="btn2">Show all</button>
+        </form>
+        <br>
         <table id="table1">
         </table>
-        <br>
-        <form>
-            <button id="btn1">Placeholder</button>
-        </form>
-
+        
         <script>
+            var carsArr;
             var carsales = getCarsales();
 
+            document.getElementById("btn1").addEventListener("click", filterCarsales);
+            document.getElementById("btn2").addEventListener("click", restoreTable);
 
+
+            function restoreTable(e) {
+                e.preventDefault();
+                makeTable(carsArr);
+            }
+
+            function filterCarsales(e) {
+                e.preventDefault();
+                var carsFiltered = carsArr.filter(function (cs) {
+                    let filter = document.getElementById("filter1").value;  
+                    if (cs.make === filter || cs.model === filter || cs.year === parseInt(filter) || cs.price === parseInt(filter)) {
+                        return cs;
+                    }
+                });
+                makeTable(carsFiltered);
+            }
 
             function getCarsales() {
                 fetch("api/carsales")
-                        .then(res => res.json()) //in flow1, just do it
+                        .then(res => res.json())
                         .then(carsales => {
-                            // Inside this callback, and only here, the response data is available
-                            console.log("data", carsales);
-                            
-                            var lis = carsales.map((c) => {
-                                line = "<tr><th>" + c.id + "</th><th>" + c.year + "</th><th>"+ c.make +"</th><th>"+ c.model +"</th><th>"+ c.price +"</th></tr>";
-                                return line;
-                            });
-                            lis.unshift("<tr><th>ID</th><th>Year</th><th>Make</th><th>Model</th><th>Price</th><tr>");
-                            document.getElementById("table1").innerHTML = lis.join("");
-
+                            carsArr = carsales;
+                            makeTable(carsales);
                         });
-            };
+            }
+            ;
+
+            function makeTable(carsales) {
+                var lis = carsales.map((c) => {
+                    line = "<tr><th>" + c.id + "</th><th>" + c.year + "</th><th>" + c.make + "</th><th>" + c.model + "</th><th>" + c.price + "</th></tr>";
+                    return line;
+                });
+                lis.unshift("<tr><th>ID</th><th>Year</th><th>Make</th><th>Model</th><th>Price</th><tr>");
+                document.getElementById("table1").innerHTML = lis.join("");
+            }
 
 
         </script>
