@@ -51,6 +51,14 @@ public class JokeRessource {
         
         return GSON.toJson(Joke);
     }
+    
+    @Path("/random")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getRandomJoke(){
+        JokeDTO Joke = FACADE.getRandomJoke();
+        return GSON.toJson(Joke);
+    }
 
     
 }

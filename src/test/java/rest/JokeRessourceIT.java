@@ -127,14 +127,13 @@ public class JokeRessourceIT {
          .body("punch", equalTo("PLEASE OH GOD TELL ME WHY!!! *laugh track* "));
           
     }
-        /**
-     * Test of getJById method, of class JokeRessource.
-     */
+
 //    @Test
-//    public void testGetJById() {
-//        given()
-//                .get("/joke/id")
+//    public void testGetRandomJoke() {
+//        given().get("/joke/random")
+//                .then()
+//                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+//                .body("punch", assertTrue(!= null));
 //    }
-//    
 
 }
