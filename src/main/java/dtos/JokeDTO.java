@@ -3,6 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+
+
+// "Dont ever quote me" -Vibeke
+
+
+
 package dtos;
 
 import entities.Joke;
