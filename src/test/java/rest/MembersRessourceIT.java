@@ -67,14 +67,11 @@ public class MembersRessourceIT {
     
     @AfterAll
     public static void closeTestServer(){
-        //System.in.read();
-         //Don't forget this, if you called its counterpart in @BeforeAll
+        
          EMF_Creator.endREST_TestWithDB();
          httpServer.shutdownNow();
     }
     
-    // Setup the DataBase (used by the test-server and this test) in a known state BEFORE EACH TEST
-    //TODO -- Make sure to change the EntityClass used below to use YOUR OWN (renamed) Entity class
     @BeforeEach
     public void setUp() {
         
