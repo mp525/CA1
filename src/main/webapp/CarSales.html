@@ -6,27 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-
-        <!--                <style>
-        
-                    td, th {
-                        border: 1px solid #dddddd;
-                        text-align: left;
-                        padding: 4px;
-                        color: #000000
-                    }
-        
-                    </style>-->
+        <style>
+            .dark-mode {
+                background-color: gray;
+            }
+        </style>
     </head>
     <body>
+
         <div class="col" align="center">
             <div class="col-6" style="background-color: lightgrey ; border: thick solid #000000" >
+
                 <h1 id="overskrift">All Carsales</h1>
                 <form>
                     <input type="text" id="filter1">
                     <button id="btn1">Filter</button>
                     <button id="btn2">Show all/default</button>
-                    <input type="text" id="sort">
+                    <input type="text" id="sort" value="type category">
                     <button id="btn3">Sort</button>
                 </form>
                 <br>
@@ -37,6 +33,7 @@
                 <br>
 
             </div>
+            <input type="submit" id="darkmode" value="Darkmode">
         </div>
 
         <script>
@@ -46,20 +43,21 @@
             document.getElementById("btn1").addEventListener("click", filterCarsales);
             document.getElementById("btn2").addEventListener("click", restoreTable);
             document.getElementById("btn3").addEventListener("click", sortCarsales);
-            //document.getElementById("add").addEventListener("click", addCarsale);
-            
-            function addCarsale(e){
+            document.getElementById("darkmode").addEventListener("click", darkMode);
+
+
+            function addCarsale(e) {
                 e.preventDefault();
                 let id = document.getElementById("id1").value;
                 let year = document.getElementById("id2").value;
                 let make = document.getElementById("id3").value;
                 let model = document.getElementById("id4").value;
                 let price = document.getElementById("id5").value;
-               var newSale = {id:id, year:year, make:make, model:model, price:price};
-               carsArr.push(newSale);
-               makeTable(carsArr);
-               console.log(carsArr);
-               
+                var newSale = {id: id, year: year, make: make, model: model, price: price};
+                carsArr.push(newSale);
+                makeTable(carsArr);
+                console.log(carsArr);
+
             }
 
             function restoreTable(e) {
@@ -121,7 +119,7 @@
                         .then(carsales => {
                             carsArr = carsales;
                             makeTable(carsales);
-                            
+
                         });
             }
             ;
@@ -139,6 +137,10 @@
                 document.getElementById("add").addEventListener("click", addCarsale);
             }
 
+            function darkMode() {
+                var body = document.body;
+                body.classList.toggle("dark-mode");
+            }
 
         </script>
     </body>
