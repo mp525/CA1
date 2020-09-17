@@ -83,13 +83,18 @@
 
                 <button onclick="random()">Get Random Joke</button>
                 <p id="jokegotten"></p>
+
             </div>
 
 
         </div>
 
 
+
         <script>
+
+
+
 
 
             var url = "api/joke/all"
@@ -127,12 +132,32 @@
             }
             ;
 
+
+
+                var audio = new Audio("sounds/seinfield.mp3");
+
+                function play() {
+                    audio.volume = 0.4;
+                    audio.play();
+
+                }
+
+                function reload() {
+                    audio.load();
+                }
+
+
+
             function random() {
                 var url = "api/joke/random";
 
                 fetch(url).then(res => res.json()).then(joke => {
                     var jokeString = "Id: " + joke.id + "<br>" + joke.setup + "<br>" + joke.punch;
+                    reload();
+                    play();
                     return document.getElementById("jokegotten").innerHTML = jokeString;
+
+
                 })
             }
 
