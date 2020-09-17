@@ -20,3 +20,4 @@ Carsale - carsale opgaven.
 
 Groupmembers - Listen af gruppemedlemmer på forsiden.
 
+*Det skal lige siges at der er en contributer github bug, som for det til at se ud som alt jeg har pushet med github ikke er med contributer kontoen, men den hedder det samme navn MattiBSH*
