@@ -13,10 +13,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author Vibeke and Nikolaj
- */
 @Path("joke")
 public class JokeRessource {
 

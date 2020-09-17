@@ -5,6 +5,9 @@ import entities.Joke;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.hasProperty;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,10 +16,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import utils.EMF_Creator;
 
-/**
- *
- * @author vnord
- */
 public class JokeFacadeTest {
 
     private static EntityManagerFactory emf;
@@ -63,22 +62,21 @@ public class JokeFacadeTest {
     }
 
     /**
-     * Test of getAllJokes method, of class JokeFacade. Make much better!!
+     * Test of getAllJokes method, of class JokeFacade.
      */
     @Test
     public void testGetAllJokes() {
-        System.out.println("getAllJokes");
-        //JokeFacade instance = null;
-        //List<JokeDTO> expResult = null;
-        List<JokeDTO> result = facade.getAllJokes();
-        assertTrue(result != null);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
-
-//        List<MovieDTO> movies = facade.getAllMovies();
-//        assertEquals(3, facade.getMovieCount(), "Expects three movies in the database");
-//        assertThat(movies, everyItem(hasProperty("title")));
+        List<JokeDTO> jokes = facade.getAllJokes();
+        assertTrue(jokes != null);
+        assertThat(jokes, everyItem(hasProperty("punch")));
+    }
+    
+    /**
+     * Test of getJokeCount method, of class JokeFacade.
+     */
+    @Test
+    public void testGetJokeCount() {
+        assertEquals(3, facade.getJokeCount());
     }
 
     /**
@@ -94,14 +92,12 @@ public class JokeFacadeTest {
 
     /**
      * Test of getRandomJoke method, of class JokeFacade.
-     * 
-     * Finish later!!
      */
     @Test
     public void testGetRandomJoke() {
-//        JokeDTO dto = facade.getRandomJoke();
-//        assertEquals(1, dto.getId());
-//        assertTrue(dto != null);
+        JokeDTO dto = facade.getRandomJoke();
+        assertTrue(dto != null);
+        
     }
 
 }

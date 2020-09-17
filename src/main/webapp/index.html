@@ -5,7 +5,8 @@
     <title>TheFrontPage</title>
     <meta name="description" content="Our front Page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 
 <body>
@@ -16,20 +17,20 @@
             <h2>Class E</h2>
         </div>
         <div class="col-10" style="background-color: whitesmoke">
-        <h2>Members loaded from a REST API</h2>
-        <table class="table col shadow-sm p-3 mb-5 bg-white rounded" id="memberTable">
+            <h2>Members loaded from a REST API</h2>
+            <table class="table col shadow-sm p-3 mb-5 bg-white rounded" id="memberTable">
 
-        </table>
-        <button class="btn btn-dark" id="btnReload">Reload</button><br>
+            </table>
+            <button class="btn btn-dark" id="btnReload">Reload</button><br>
 
-        <a href="https://github.com/mp525/CA1" class="link">Go to Contract Page</a><br>
-        <a href="https://github.com/mp525/CA1" class="link">Go to Jokes Page</a><br>
-        <a href="https://github.com/mp525/CA1" class="link">Go to Git Repository</a><br>
-        <a href="https://mparking.dk/CA1/CarSales.html" class="link">Go to Car Page</a><br>
-    </div>
-        </div><br><br>
+            <a href="https://mparking.dk/CA1/Contract.html" class="link">Go to Contract Page</a><br>
+            <a href="https://mparking.dk/CA1/Jokes.html" class="link">Go to Jokes Page</a><br>
+            <a href="https://github.com/mp525/CA1" class="link">Go to Git Repository</a><br>
+            <a href="https://mparking.dk/CA1/CarSales.html" class="link">Go to Car Page</a><br>
+        </div>
+    </div><br><br>
     <div id="showPic" align="center">
-        
+
     </div>
     <!-- det her er bare et spaceholder navn -->
     <script>
@@ -41,21 +42,47 @@
             event.preventDefault();
             keyPressed = event.target.innerText;
             console.log(keyPressed.includes(""));
-        var divpic=document.getElementById("showPic");
-            if (keyPressed.includes('Matti')) 
-                divpic.innerHTML="<img src="+"Matti.jpg"+" width="+"300"+">";
-                
-                else if (keyPressed.includes('Mathias'))    
-                divpic.innerHTML="<img src="+"Mathias.jpg"+" width="+"300"+">";
+            var divpic = document.getElementById("showPic");
+            if (keyPressed.includes('Matti'))
+                divpic.innerHTML = "<img src=" + "images/Matti.jpg" + " width=" + "300" + ">";
+            else if (keyPressed.includes('Mathias'))
+                divpic.innerHTML = "<img src=" + "images/Mathias.jpg" + " width=" + "300" + ">";
+
+            else if (keyPressed.includes('Vibeke'))
+                divpic.innerHTML = "<img src=" + "images/Vibeke.jpg" + " width=" + "300" + ">";
+
+            else if (keyPressed.includes('Nikolaj'))
+                divpic.innerHTML = "<img src=" + "images/Nikolaj.jpg" + " width=" + "300" + ">";
             
-           else if (keyPressed.includes('Vibeke'))    
-                divpic.innerHTML="<img src="+"Vibeke.jpg"+" width="+"300"+">";
+            else if (keyPressed.includes('Curly fries'))
+                divpic.innerHTML = "<img src=" + "images/curlyfries.jpg" + " width=" + "300" + ">";
+
+            else if (keyPressed.includes('Mashed'))
+                divpic.innerHTML = "<img src=" + "images/Mash.jpg" + " width=" + "300" + ">";
+
+            else if (keyPressed.includes('Rebaked'))
+                divpic.innerHTML = "<img src=" + "images/bakedpotatoes.jpg" + " width=" + "300" + ">";
             
-            else if (keyPressed.includes('Nikolaj'))    
-                divpic.innerHTML="<img src="+"Nikolaj.jpg"+" width="+"300"+">";
+            else if (keyPressed.includes('Gaming'))
+                divpic.innerHTML = "<img src=" + "images/gaming.jpg" + " width=" + "300" + ">";
+
+            else if (keyPressed.includes('Streaming'))
+                divpic.innerHTML = "<img src=" + "images/streaming.jpg" + " width=" + "300" + ">";
             
-            
-            
+            else if (keyPressed.includes('Tabletop Wargaming'))
+                divpic.innerHTML = "<img src=" + "images/war.jpeg" + " width=" + "300" + ">";
+            else if (keyPressed.includes('Knitting'))
+                divpic.innerHTML = "<img src=" + "images/k.jpg" + " width=" + "300" + ">";
+            else if (keyPressed.includes('Fellowship'))
+                divpic.innerHTML = "<img src=" + "images/lotr.jpg" + " width=" + "300" + ">";
+
+            else if (keyPressed.includes('Harry Potter and the Order of the Phoenix'))
+                divpic.innerHTML = "<img src=" + "images/Orderphoenix.jpg" + " width=" + "300" + ">";          
+
+            else if (keyPressed.includes('The Nightmare Before Christmas'))
+                divpic.innerHTML = "<img src=" + "images/nbc.jpg" + " width=" + "300" + ">";
+            else if (keyPressed.includes('Neil'))
+                divpic.innerHTML = "<img src=" + "images/twisted.jpeg" + " width=" + "300" + ">";
         });
 
 
@@ -70,7 +97,6 @@
                     .then(res => res.json())
                     .then(medlemmer => {
                         var lis = medlemmer.map((m) => {
-
                             line = "<tr><th>" + m.name + "</th><th>" + m.studentID + "</th><th>" + m.favouritePotatoForm + "</th><th>" + m.favouriteMovie + "</th><th>" + m.hobby + "</th></tr>"
                             return line;
                         })

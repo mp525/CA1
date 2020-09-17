@@ -74,9 +74,6 @@ public class JokeFacade {
         int ranNum = ran.nextInt(arrSize);
         JokeDTO ranJoke = dtos.get(ranNum);
         return ranJoke;
-        //dtos[size];
-//        Joke j = em.find(Joke.class, size);
-//        return new JokeDTO(j);
     }
     
     public static void main(String[] args) {
