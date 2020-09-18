@@ -38,10 +38,8 @@ public class GroupMemberFacade {
             TypedQuery<GroupMember> query = 
                        em.createQuery("Select m from GroupMember m", GroupMember.class);
             List <GroupMember>members= query.getResultList();
-            System.out.println(members.get(0).getName());
             
             List<GroupMemberDTO>membersDTO=toDTO(members);
-            System.out.println(membersDTO.get(0).getName());
             return membersDTO;
         }finally {
             em.close();}}

@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import static org.hamcrest.MatcherAssert.assertThat;
+import org.hamcrest.Matchers;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,10 +32,12 @@ public class GroupMemberFacadeIT {
         private static GroupMemberFacade facade;
 
     public GroupMemberFacadeIT() {
+            
+                    
     }
     
     @BeforeAll
-    public static void setUpClass() {
+    public static void setUpClass() throws InterruptedException {
 
         emf = EMF_Creator.createEntityManagerFactoryForTest();
         EntityManager em = emf.createEntityManager();
@@ -37,8 +45,17 @@ public class GroupMemberFacadeIT {
         try {
             em.getTransaction().begin();
             em.createQuery("DELETE from GroupMember").executeUpdate();
+            GroupMember m1 = new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder");
+            
             //ændre min hobby senere haha
-            em.persist( new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder"));                    
+            em.persist( m1);   
+            Thread.sleep(2000);
+            GroupMember m2 = new GroupMember("Bob Hansen", "cph-ok829", "fries", "The FellowShip of the Ring", "Tinder");
+            em.persist( m2); 
+            Thread.sleep(2000);
+            GroupMember m3 = new GroupMember("bent bob Hansen", "cph-sd829", "fries", "The FellowShip of the Ring", "Tinder");
+
+            em.persist( m3);  
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -52,20 +69,16 @@ public class GroupMemberFacadeIT {
      */
     @Test
     public void testGetAll() {
-        List<GroupMemberDTO> expResult = new ArrayList();
-        GroupMember m = new GroupMember("Matti Hansen", "cph-mh829", "Curlyfries", "The FellowShip of the Ring", "Tinder");
-        GroupMemberDTO dto = new GroupMemberDTO(m);
-        expResult.add(dto);
-
-        System.out.println(m);
-        System.out.println(dto);
-        //nullpointer
         List<GroupMemberDTO> result = GroupMemberFacade.getAll();   
-        System.out.println(result);
 
-
-//
-        assertEquals(expResult.get(0).getName(), result.get(0).getName());
+        assertThat(result, everyItem(hasProperty("name")));
+        assertThat(result, hasItems( // or contains or containsInAnyOrder 
+                Matchers.<GroupMemberDTO>hasProperty("name", is("Matti Hansen")),
+                Matchers.<GroupMemberDTO>hasProperty("name", is("Bob Hansen")),
+                Matchers.<GroupMemberDTO>hasProperty("name", is("bent bob Hansen"))
+        )
+        );
+        
         
     }
 
